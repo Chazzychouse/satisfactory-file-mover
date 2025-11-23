@@ -9,9 +9,9 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py .
+COPY mover/ ./mover/
 
 RUN mkdir -p /data/source /data/saves /data/blueprints
 
-CMD ["python", "main.py"]
+CMD ["python", "mover/main.py"]
 
