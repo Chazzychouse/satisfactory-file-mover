@@ -1,0 +1,20 @@
+services:
+  satisfactory-file-mover:
+    build: .
+    container_name: satisfactory-file-mover
+    restart: unless-stopped
+    volumes:
+      - ${SOURCE_VOLUME_PATH}:/data/source
+      - ${SAVES_VOLUME_PATH}:/data/saves
+      - ${BLUEPRINTS_VOLUME_PATH}:/data/blueprints
+    environment:
+      - SOURCE_PATH=/data/source
+      - SAVE_PATH=/data/saves
+      - BLUEPRINT_PATH=/data/blueprints
+      - POLL_INTERVAL=2.0
+      - FILE_STABILITY_DELAY=1.0
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
